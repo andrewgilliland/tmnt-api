@@ -1,3 +1,17 @@
+# Basic Commands
+
+1. Install dependencies (if not already done)
+
+```bash
+uv sync
+```
+
+2. Run the FastAPI app with uvicorn
+
+```bash
+uv run uvicorn app.main:app --reload
+```
+
 ## Project Structure
 
 ```

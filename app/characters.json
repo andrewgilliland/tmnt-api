@@ -1,0 +1,98 @@
+[
+  {
+    "id": 1,
+    "name": "Tanis Half-Elven",
+    "race": "Half-Elf",
+    "class": "Fighter/Ranger",
+    "alignment": "Neutral Good",
+    "description": "Leader of the Heroes of the Lance, struggling with his dual heritage"
+  },
+  {
+    "id": 2,
+    "name": "Raistlin Majere",
+    "race": "Human",
+    "class": "Wizard",
+    "alignment": "Neutral Evil",
+    "description": "Ambitious mage with hourglass eyes and golden skin, Master of Past and Present"
+  },
+  {
+    "id": 3,
+    "name": "Caramon Majere",
+    "race": "Human",
+    "class": "Fighter",
+    "alignment": "Neutral Good",
+    "description": "Raistlin's twin brother, strong and loyal warrior"
+  },
+  {
+    "id": 4,
+    "name": "Sturm Brightblade",
+    "race": "Human",
+    "class": "Knight",
+    "alignment": "Lawful Good",
+    "description": "Noble Knight of Solamnia, dedicated to the Oath and the Measure"
+  },
+  {
+    "id": 5,
+    "name": "Tasslehoff Burrfoot",
+    "race": "Kender",
+    "class": "Rogue",
+    "alignment": "Neutral Good",
+    "description": "Curious and fearless kender with a talent for 'finding' things"
+  },
+  {
+    "id": 6,
+    "name": "Flint Fireforge",
+    "race": "Dwarf",
+    "class": "Fighter",
+    "alignment": "Neutral Good",
+    "description": "Grumpy but kind-hearted dwarven weaponsmith"
+  },
+  {
+    "id": 7,
+    "name": "Goldmoon",
+    "race": "Human",
+    "class": "Cleric",
+    "alignment": "Lawful Good",
+    "description": "Chieftain's daughter and first true cleric of Mishakal in centuries"
+  },
+  {
+    "id": 8,
+    "name": "Riverwind",
+    "race": "Human",
+    "class": "Ranger",
+    "alignment": "Lawful Good",
+    "description": "Plainsman warrior and Goldmoon's devoted husband"
+  },
+  {
+    "id": 9,
+    "name": "Kitiara Uth Matar",
+    "race": "Human",
+    "class": "Fighter",
+    "alignment": "Lawful Evil",
+    "description": "Dragon Highlord and half-sister to Caramon and Raistlin"
+  },
+  {
+    "id": 10,
+    "name": "Laurana Kanan",
+    "race": "Elf",
+    "class": "Fighter/Princess",
+    "alignment": "Lawful Good",
+    "description": "Elven princess who becomes the Golden General"
+  },
+  {
+    "id": 11,
+    "name": "Fizban",
+    "race": "Human",
+    "class": "Wizard",
+    "alignment": "Chaotic Good",
+    "description": "Seemingly absent-minded wizard, actually Paladine in disguise"
+  },
+  {
+    "id": 12,
+    "name": "Tika Waylan",
+    "race": "Human",
+    "class": "Fighter",
+    "alignment": "Neutral Good",
+    "description": "Former barmaid who became a skilled warrior"
+  }
+]

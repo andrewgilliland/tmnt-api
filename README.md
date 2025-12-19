@@ -114,3 +114,5 @@ https://<api-gateway-url>/Prod/docs
 ```
 
 [Anatomy of a Scalable Python Project (FastAPI)](https://www.youtube.com/watch?v=Af6Zr0tNNdE)
+
+[Example Repo](https://github.com/ArjanCodes/examples/tree/main/2025/project)

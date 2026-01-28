@@ -2,7 +2,7 @@ from fastapi import FastAPI
 import json
 from pathlib import Path
 
-from app.models import CharactersResponse, ClassResponse, Class, Race
+from app.models import CharactersResponse, ClassResponse, Class, Race, MonstersResponse
 
 app = FastAPI(title="D&D API")
 
@@ -31,3 +31,12 @@ def get_characters():
     with open(characters_file, "r") as f:
         characters = json.load(f)
     return {"characters": characters}
+
+
+@app.get("/monsters", response_model=MonstersResponse)
+def get_monsters():
+    """Return all D&D monsters"""
+    monsters_file = Path(__file__).parent / "monsters.json"
+    with open(monsters_file, "r") as f:
+        monsters = json.load(f)
+    return {"monsters": monsters}

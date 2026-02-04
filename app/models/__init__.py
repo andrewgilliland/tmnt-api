@@ -12,6 +12,10 @@ from .schemas import (
     MonsterType,
     DamageType,
     Action,
+    Item,
+    ItemsResponse,
+    ItemType,
+    Rarity,
 )
 
 __all__ = [
@@ -28,4 +32,8 @@ __all__ = [
     "MonsterType",
     "DamageType",
     "Action",
+    "Item",
+    "ItemsResponse",
+    "ItemType",
+    "Rarity",
 ]

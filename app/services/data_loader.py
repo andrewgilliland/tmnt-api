@@ -17,3 +17,11 @@ def load_characters():
     file_path = Path(__file__).parent.parent / "characters.json"
     with open(file_path, "r") as f:
         return json.load(f)
+
+
+@lru_cache(maxsize=1)
+def load_items():
+    """Load and cache items data to avoid reading file on every request"""
+    file_path = Path(__file__).parent.parent / "items.json"
+    with open(file_path, "r") as f:
+        return json.load(f)

@@ -70,8 +70,6 @@ def get_item_by_id(item_id: int):
     item = next((i for i in items if i["id"] == item_id), None)
 
     if not item:
-        raise HTTPException(
-            status_code=404, detail=f"Item with id {item_id} not found"
-        )
+        raise HTTPException(status_code=404, detail=f"Item with id {item_id} not found")
 
     return item

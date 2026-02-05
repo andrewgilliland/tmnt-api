@@ -2,8 +2,9 @@
 
 import random
 from app.models import Monster, MonsterType, Size, Alignment, Stats, Action, DamageType
-from app.config.constants import XP_BY_CR, HIT_DICE_BY_SIZE
+from app.config.constants import XP_BY_CR
 from app.services.data_loader import load_monster_names
+from app.utils import calculate_hp_from_cr, calculate_ac_from_cr, get_xp_by_cr
 
 
 def generate_random_monster_name(monster_type: MonsterType) -> str:
@@ -30,26 +31,6 @@ def generate_random_monster_stats(challenge_rating: float) -> Stats:
         wisdom=base_stat + random.randint(-variation, variation),
         charisma=base_stat + random.randint(-variation, variation),
     )
-
-
-def calculate_hp_from_cr(challenge_rating: float, size: Size) -> tuple[int, str]:
-    """Calculate HP and hit dice based on CR and size"""
-
-    die_size = HIT_DICE_BY_SIZE[size]
-    num_dice = max(1, int(challenge_rating * 3) + random.randint(1, 6))
-    constitution_bonus = int(challenge_rating)
-
-    # Calculate HP: (num_dice * (die_size / 2 + 0.5)) + (num_dice * con_bonus)
-    average_roll = (die_size / 2) + 0.5
-    hit_points = int((num_dice * average_roll) + (num_dice * constitution_bonus))
-    hit_dice = f"{num_dice}d{die_size}+{num_dice * constitution_bonus}"
-
-    return hit_points, hit_dice
-
-
-def calculate_ac_from_cr(challenge_rating: float) -> int:
-    """Calculate armor class based on challenge rating"""
-    return 10 + int(challenge_rating * 1.2) + random.randint(0, 3)
 
 
 def generate_special_abilities(

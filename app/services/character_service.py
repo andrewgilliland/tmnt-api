@@ -3,13 +3,7 @@
 import random
 from app.models import Character, Class, Race, Alignment, Stats
 from app.services.data_loader import load_character_names, load_character_traits
-
-
-def roll_ability_score() -> int:
-    """Roll 4d6, drop lowest die (standard D&D method)"""
-    rolls = [random.randint(1, 6) for _ in range(4)]
-    rolls.remove(min(rolls))
-    return sum(rolls)
+from app.utils import roll_ability_score
 
 
 def generate_random_stats() -> Stats:

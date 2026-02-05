@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-from app.api import characters, monsters, game_data
+from app.api import characters, monsters, game_data, items
 from app.config import settings
 
 app = FastAPI(
@@ -43,3 +43,4 @@ def health_check():
 app.include_router(characters.router)
 app.include_router(monsters.router)
 app.include_router(game_data.router)
+app.include_router(items.router)

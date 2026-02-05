@@ -1,95 +1,9 @@
-from pydantic import BaseModel, Field
+"""Monster-related models and enums"""
+
 from enum import Enum
+from pydantic import BaseModel
 
-
-class Class(str, Enum):
-    """D&D 5e character classes"""
-
-    BARBARIAN = "Barbarian"
-    BARD = "Bard"
-    CLERIC = "Cleric"
-    DRUID = "Druid"
-    FIGHTER = "Fighter"
-    MONK = "Monk"
-    PALADIN = "Paladin"
-    RANGER = "Ranger"
-    ROGUE = "Rogue"
-    SORCERER = "Sorcerer"
-    WARLOCK = "Warlock"
-    WIZARD = "Wizard"
-
-
-class Race(str, Enum):
-    """D&D 5e character races"""
-
-    DRAGONBORN = "Dragonborn"
-    DWARF = "Dwarf"
-    ELF = "Elf"
-    GNOME = "Gnome"
-    HALF_ELF = "Half-Elf"
-    HALF_ORC = "Half-Orc"
-    HALFLING = "Halfling"
-    HUMAN = "Human"
-    TIEFLING = "Tiefling"
-
-
-class Alignment(str, Enum):
-    LAWFUL_GOOD = "Lawful Good"
-    NEUTRAL_GOOD = "Neutral Good"
-    CHAOTIC_GOOD = "Chaotic Good"
-    LAWFUL_NEUTRAL = "Lawful Neutral"
-    TRUE_NEUTRAL = "True Neutral"
-    CHAOTIC_NEUTRAL = "Chaotic Neutral"
-    LAWFUL_EVIL = "Lawful Evil"
-    NEUTRAL_EVIL = "Neutral Evil"
-    CHAOTIC_EVIL = "Chaotic Evil"
-    UNALIGNED = "Unaligned"
-
-
-class ClassResponse(BaseModel):
-    classes: list[Class]
-
-
-class Stats(BaseModel):
-    strength: int
-    dexterity: int
-    constitution: int
-    intelligence: int
-    wisdom: int
-    charisma: int
-
-
-class Character(BaseModel):
-    id: int
-    name: str
-    race: Race
-    class_: Class = Field(alias="class")  # 'class' is a reserved keyword
-    alignment: Alignment
-    description: str
-    stats: Stats
-
-    model_config = {
-        "populate_by_name": True  # Allows both 'class' and 'class_' to work
-    }
-
-
-class CharactersResponse(BaseModel):
-    characters: list[Character]
-
-
-class RaceResponse(BaseModel):
-    races: list[Race]
-
-
-class Size(str, Enum):
-    """Creature sizes"""
-
-    TINY = "Tiny"
-    SMALL = "Small"
-    MEDIUM = "Medium"
-    LARGE = "Large"
-    HUGE = "Huge"
-    GARGANTUAN = "Gargantuan"
+from .common import Alignment, Size, Stats
 
 
 class MonsterType(str, Enum):
@@ -182,4 +96,6 @@ class Monster(BaseModel):
 
 
 class MonstersResponse(BaseModel):
+    """Response model for multiple monsters"""
+
     monsters: list[Monster]

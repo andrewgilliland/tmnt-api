@@ -3,17 +3,18 @@ from fastapi import APIRouter, Query, HTTPException
 from app.models import CharactersResponse, Class, Race, Character
 from app.services.data_loader import load_characters
 from app.services.character_service import generate_random_character
+from app.api.dependencies import CommonSearch
 
 router = APIRouter()
 
 
 @router.get("", response_model=CharactersResponse)
 def get_characters(
+    search: CommonSearch,
     class_: Class | None = Query(
         None, alias="class", description="Filter by character class"
     ),
     race: Race | None = Query(None, description="Filter by character race"),
-    name: str | None = Query(None, description="Search by name (case-insensitive)"),
 ):
     """
     Return all D&D characters from Dragonlance with optional filtering.
@@ -32,8 +33,8 @@ def get_characters(
     if race:
         characters = [c for c in characters if c["race"] == race.value]
 
-    if name:
-        characters = [c for c in characters if name.lower() in c["name"].lower()]
+    if search.name:
+        characters = [c for c in characters if search.name.lower() in c["name"].lower()]
 
     return {"characters": characters}
 

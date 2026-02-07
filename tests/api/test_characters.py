@@ -1,7 +1,5 @@
 """Tests for character API endpoints"""
 
-import pytest
-
 
 def test_get_characters(client):
     """Test getting all characters"""

@@ -1,6 +1,5 @@
 """Tests for utility functions - formatters"""
 
-import pytest
 from app.utils.formatters import format_modifier, pluralize, titlecase
 
 

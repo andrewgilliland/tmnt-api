@@ -1,6 +1,5 @@
 """Tests for utility functions - validators"""
 
-import pytest
 from app.utils.validators import (
     validate_ability_score,
     validate_level,

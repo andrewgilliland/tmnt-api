@@ -1,6 +1,5 @@
 """Tests for character service functions"""
 
-import pytest
 from app.services.character_service import (
     generate_random_stats,
     generate_random_name,

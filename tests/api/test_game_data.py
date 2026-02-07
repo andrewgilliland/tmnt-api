@@ -1,7 +1,5 @@
 """Tests for game data API endpoints"""
 
-import pytest
-
 
 def test_get_classes(client):
     """Test getting all character classes"""

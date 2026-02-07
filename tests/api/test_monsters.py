@@ -1,7 +1,5 @@
 """Tests for monster API endpoints"""
 
-import pytest
-
 
 def test_get_monsters(client):
     """Test getting all monsters"""

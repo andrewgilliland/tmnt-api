@@ -1,6 +1,5 @@
 """Tests for utility functions - calculations"""
 
-import pytest
 from app.utils.calculations import (
     calculate_modifier,
     calculate_proficiency_bonus,

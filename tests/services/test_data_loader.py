@@ -1,6 +1,5 @@
 """Tests for data loader functions"""
 
-import pytest
 from app.services.data_loader import (
     load_characters,
     load_monsters,

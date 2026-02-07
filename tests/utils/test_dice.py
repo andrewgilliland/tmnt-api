@@ -1,6 +1,5 @@
 """Tests for utility functions - dice rolling"""
 
-import pytest
 from app.utils.dice import (
     roll_dice,
     roll_ability_score,

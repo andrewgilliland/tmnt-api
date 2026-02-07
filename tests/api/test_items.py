@@ -1,7 +1,5 @@
 """Tests for item API endpoints"""
 
-import pytest
-
 
 def test_get_items(client):
     """Test getting all items"""

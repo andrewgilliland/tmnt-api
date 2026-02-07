@@ -1,6 +1,5 @@
 """Tests for monster service functions"""
 
-import pytest
 from app.services.monster_service import (
     generate_random_monster_name,
     generate_random_monster_stats,

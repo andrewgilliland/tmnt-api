@@ -2,21 +2,21 @@ from fastapi import APIRouter, Query, HTTPException
 
 from app.models import ItemsResponse, Item, ItemType, Rarity
 from app.services.data_loader import load_items
+from app.api.dependencies import CommonSearch, CommonCostRange
 
 router = APIRouter()
 
 
 @router.get("", response_model=ItemsResponse)
 def get_items(
+    search: CommonSearch,
+    cost_range: CommonCostRange,
     type: ItemType | None = Query(None, description="Filter by item type"),
     rarity: Rarity | None = Query(None, description="Filter by item rarity"),
     magic: bool | None = Query(None, description="Filter by magic items (true/false)"),
     attunement: bool | None = Query(
         None, description="Filter by attunement requirement (true/false)"
     ),
-    min_cost: int | None = Query(None, ge=0, description="Minimum cost in gold"),
-    max_cost: int | None = Query(None, ge=0, description="Maximum cost in gold"),
-    name: str | None = Query(None, description="Search by name (case-insensitive)"),
 ):
     """
     Return all D&D items and equipment with optional filtering.
@@ -45,14 +45,14 @@ def get_items(
     if attunement is not None:
         items = [i for i in items if i["attunement_required"] == attunement]
 
-    if min_cost is not None:
-        items = [i for i in items if i["cost"] >= min_cost]
+    if cost_range.min_cost is not None:
+        items = [i for i in items if i["cost"] >= cost_range.min_cost]
 
-    if max_cost is not None:
-        items = [i for i in items if i["cost"] <= max_cost]
+    if cost_range.max_cost is not None:
+        items = [i for i in items if i["cost"] <= cost_range.max_cost]
 
-    if name:
-        items = [i for i in items if name.lower() in i["name"].lower()]
+    if search.name:
+        items = [i for i in items if search.name.lower() in i["name"].lower()]
 
     return {"items": items}
 

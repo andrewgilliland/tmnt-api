@@ -3,17 +3,17 @@ from fastapi import APIRouter, Query, HTTPException
 from app.models import MonstersResponse, MonsterType, Size, Monster
 from app.services.data_loader import load_monsters
 from app.services.monster_service import generate_random_monster
+from app.api.dependencies import CommonSearch, CommonChallengeRating
 
 router = APIRouter()
 
 
 @router.get("", response_model=MonstersResponse)
 def get_monsters(
+    search: CommonSearch,
+    cr_params: CommonChallengeRating,
     type: MonsterType | None = Query(None, description="Filter by monster type"),
     size: Size | None = Query(None, description="Filter by monster size"),
-    min_cr: float | None = Query(None, ge=0, description="Minimum challenge rating"),
-    max_cr: float | None = Query(None, ge=0, description="Maximum challenge rating"),
-    name: str | None = Query(None, description="Search by name (case-insensitive)"),
 ):
     """
     Return all D&D monsters with optional filtering.
@@ -34,24 +34,23 @@ def get_monsters(
     if size:
         monsters = [m for m in monsters if m["size"] == size.value]
 
-    if min_cr is not None:
-        monsters = [m for m in monsters if m["challenge_rating"] >= min_cr]
+    if cr_params.min_cr is not None:
+        monsters = [m for m in monsters if m["challenge_rating"] >= cr_params.min_cr]
 
-    if max_cr is not None:
-        monsters = [m for m in monsters if m["challenge_rating"] <= max_cr]
+    if cr_params.max_cr is not None:
+        monsters = [m for m in monsters if m["challenge_rating"] <= cr_params.max_cr]
 
-    if name:
-        monsters = [m for m in monsters if name.lower() in m["name"].lower()]
+    if search.name:
+        monsters = [m for m in monsters if search.name.lower() in m["name"].lower()]
 
     return {"monsters": monsters}
 
 
 @router.get("/random", response_model=Monster)
 def get_random_monster(
+    cr_params: CommonChallengeRating,
     type: MonsterType | None = Query(None, description="Filter by monster type"),
     size: Size | None = Query(None, description="Filter by monster size"),
-    min_cr: float | None = Query(None, ge=0, description="Minimum challenge rating"),
-    max_cr: float | None = Query(None, ge=0, description="Maximum challenge rating"),
 ):
     """
     Generate a random D&D monster.
@@ -70,7 +69,7 @@ def get_random_monster(
       - Random alignment and abilities
     """
     return generate_random_monster(
-        monster_type=type, size=size, min_cr=min_cr, max_cr=max_cr
+        monster_type=type, size=size, min_cr=cr_params.min_cr, max_cr=cr_params.max_cr
     )
 
 
